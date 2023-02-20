@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "560481534601",
+    "project_id": "cloud-storage-cb18b",
+    "storage_bucket": "cloud-storage-cb18b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560481534601:android:d5c2e516471f4d99337c58",
+        "android_client_info": {
+          "package_name": "com.example.test_firebase_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560481534601-jiimpekpqcaq1g2oq9m3io9i7h96ah3r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA23CfcCNmvlkMMjZvTj2-3jfQW_-3bKEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560481534601-jiimpekpqcaq1g2oq9m3io9i7h96ah3r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
