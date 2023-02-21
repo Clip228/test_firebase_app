@@ -38,13 +38,14 @@ class _DetailScreenState extends State<DetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'DetailScreen',
+          'Detail Screen',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.w500,
           ),
         ),
+        leading: Icon(Icons.cloud, color: Colors.white,),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 20),

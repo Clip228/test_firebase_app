@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:test_firebase_app/data/download.dart';
 import 'package:test_firebase_app/domain/FileStorage.dart';
 import 'package:test_firebase_app/theme/theme.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -14,9 +15,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   List<FileStorage?>? _listNameStorage = [];
   List<String?>? _listUrlStorage = [];
+
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -25,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> upload() async {
+    _isLoading = true;
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
@@ -34,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // Upload file
       await FirebaseStorage.instance.ref('image/$fileName').putFile(file);
       _listNameStorage = await DownloadFiles().download2();
+      _isLoading = false;
       setState(() {});
     }
   }
@@ -42,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _listNameStorage = await DownloadFiles().download2();
     setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +65,15 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         textDirection: TextDirection.ltr,
         children: <Widget>[
+          //Progress Bar
+          // Expanded(child: Center(
+          //     child: Visibility(
+          //       key: Key(_isLoading.toString()),
+          //       visible: true,
+          //       child: const CircularProgressIndicator(
+          //         color: Colors.green,
+          //       ),
+          //     ))),
           Expanded(
               child: ListView.separated(
                   key: Key(_listNameStorage!.length.toString()),
@@ -72,7 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: const TextStyle(fontSize: 18),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed('/detail', arguments: _listNameStorage![i]!.url);
+                        Navigator.of(context).pushNamed('/detail',
+                            arguments: _listNameStorage![i]!.url);
                       },
                       trailing: const Icon(Icons.arrow_forward_ios),
                     );
@@ -91,10 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Icon(Icons.add),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
-
